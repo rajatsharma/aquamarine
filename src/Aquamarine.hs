@@ -12,4 +12,4 @@ functionWithDescription :: String -> String -> [String] -> String
 functionWithDescription name description body = "function {0} -d {1}\n\t{2}\nend" *** [name, description, unlines body]
 
 function :: String -> [String] -> String
-function name body = "function {0}\n\t{2}\nend" *** [name, unlines body]
+function name body = "function {0}\n\t{1}end" *** [name, unlines body]
