@@ -1,4 +1,4 @@
 import Aquamarine
 
 main :: IO ()
-main = putStrLn $ function "hello" ["echo 'Hello'", "echo 'Bye'"]
+main = putStrLn $ "hello" $> ["echo 'Hello'", "echo 'Bye'"]

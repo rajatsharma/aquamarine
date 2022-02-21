@@ -1,15 +1,16 @@
 module Aquamarine where
 
+import Data.List
 import Soothsayer ((***))
 
-abbr :: String -> String -> String
-abbr abbreviation fullCommand = "abbr -a -g {0} {1}" *** [abbreviation, fullCommand]
+fp :: String -> String
+fp path = "fish_add_path {0}" *** [path]
 
-fishAddPath :: String -> String
-fishAddPath path = "fish_add_path {0}" *** [path]
+fn :: String -> String -> [String] -> String
+fn name description body = "function {0} -d {1}\n\t{2}\nend" *** [name, description, intercalate "\n\t" body]
 
-functionWithDescription :: String -> String -> [String] -> String
-functionWithDescription name description body = "function {0} -d {1}\n\t{2}\nend" *** [name, description, unlines body]
+(-->) :: String -> String -> String
+(-->) abbreviation fullCommand = "abbr -a -g {0} {1}" *** [abbreviation, fullCommand]
 
-function :: String -> [String] -> String
-function name body = "function {0}\n\t{1}end" *** [name, unlines body]
+($>) :: String -> [String] -> String
+($>) name body = "function {0}\n\t{1}\nend" *** [name, intercalate "\n\t" body]
